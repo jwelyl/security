@@ -1,0 +1,30 @@
+<h1>Spring Security</h1>
+{{#loginUser}}
+    <form method="post" action="/logout">
+        <!-- point1 : action은 http.logout의 logoutUrl과 일치 -->
+        {{loginUser.Username}}님 반갑습니다.
+        <input type="submit" value="logout">
+    </form>
+{{/loginUser}}
+{{^loginUser}}
+    <form method="post" action="/login">
+        <!-- point2 : action은 http.login의 loginProcessingUrl과 일치 -->
+        <input type="text" name="id" placeholder="아이디를 입력하세요."/>
+        <input type="password" name="pass" placeholder="비밀번호를 입력하세요."/>
+        <label>로그인 유지<input type="checkbox" name="remember-me"></label>
+        <!-- point3 : input의 이름이 id, pass, remember-me -->
+        <input type="submit" />
+    </form>
+{{/loginUser}}
+
+<hr/>
+
+<a href="/index">index</a>
+<a href="/admin">admin</a>
+
+<script>
+    //  point4 : msg라는 속성이 넘어오는 경우 alert을 출력한다.
+    {{# msg }}
+        alert("{{msg}}")
+    {{/msg}}
+</script>
